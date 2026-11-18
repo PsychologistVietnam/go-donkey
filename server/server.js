@@ -41,6 +41,29 @@ app.use((req, res, next) => {
   );
 });
 
+
+
+// Serve React static files
+app.use(express.static(clientDist));
+
+// React fallback
+app.get("/{*path}", (req, res, next) => {
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({
+      error: "API not found"
+    });
+  }
+
+  res.sendFile(
+    path.join(clientDist, "index.html"),
+    (err) => {
+      if (err) next(err);
+    }
+  );
+});
+
+
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Go Donkey running at http://localhost:${PORT}`);
 });
