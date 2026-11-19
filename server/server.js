@@ -20,8 +20,7 @@ app.use(express.json());
 // Kiểm tra server
 app.get("/api/health", (req, res) => {
   res.json({
-    success: true,
-    message: "Go Donkey API is running"
+    success: true
   });
 });
 

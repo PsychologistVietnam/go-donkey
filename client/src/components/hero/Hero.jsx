@@ -2,6 +2,7 @@
 import heroImage from "../../assets/images/home/hero.png";
 import heroPhoneImage from "../../assets/images/home/hero-phone.png";
 import "./Hero.css";
+import Countdown from "../countdown/Countdown";
 import DonationProgress from "./DonationProgress";
 import JourneyProgress from "./JourneyProgress";
 
@@ -33,6 +34,9 @@ const journey = {
   walked: 842,
   goal: 3450,
   city: "Da Lat",
+  stepsTaken: 1450766,
+  journeyDay: 27,
+  journeyDays: 300,
 };
 
 export default function Hero() {
@@ -58,6 +62,8 @@ export default function Hero() {
             awareness for mental health and support the
             HOPE Suicide Prevention Hotline.
           </p>
+
+          <Countdown targetDate="2027-08-25" />
 
           <div className="hero__highlights">
             {highlights.map((item) => (

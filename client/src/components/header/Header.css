@@ -52,14 +52,37 @@
 
 .header__logo-icon {
   display: block;
-  width: 44px;
-  height: 44px;
+  width: 58px;
+  height: 58px;
   flex-shrink: 0;
   object-fit: contain;
 }
 
+.header__wordmark {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.header__wordmark-name {
+  position: relative;
+  display: inline-block;
+}
+
+.header__wordmark-name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -4%;
+  bottom: -1rem;
+  height: 0.75rem;
+  border-bottom: 0.28rem solid #55a83d;
+  border-radius: 50%;
+  transform: rotate(180deg);
+}
+
 .header__domain {
   font-weight: 700;
+  color: #63a84d;
 }
 
 /* =========================
@@ -73,6 +96,7 @@
   flex: 1;
   min-width: 0;
   gap: clamp(14px, 2vw, 34px);
+  font-family: "Poppins", sans-serif;
 }
 
 .header__link {
@@ -115,6 +139,7 @@
   align-items: center;
   gap: 16px;
   flex-shrink: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .header__donate {

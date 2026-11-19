@@ -127,8 +127,9 @@ function Header() {
             alt=""
             aria-hidden="true"
           />
-          <span>
-            GoDonkey<span className="header__domain">.org</span>
+          <span className="header__wordmark">
+            <span className="header__wordmark-name">GoDonkey</span>
+            <span className="header__domain">.org</span>
           </span>
         </Link>
 

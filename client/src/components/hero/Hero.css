@@ -184,6 +184,15 @@
    DONATION PROGRESS
 ================================== */
 
+.donation-progress-slot {
+  position: relative;
+  min-width: 0;
+}
+
+.donation-progress--placeholder {
+  display: none;
+}
+
 .donation-progress {
   padding: 23px 24px 20px;
   border-radius: 13px;
@@ -266,32 +275,194 @@
   text-align: right;
 }
 
-.donation-progress__button {
+.donation-progress__filters {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr 1fr;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid #dfe3df;
+  border-bottom: 1px solid #dfe3df;
+}
+
+.donation-progress__filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 6px 4px;
+  border: 1px solid #d8ddda;
+  border-radius: 8px;
+  background: #f7f9f7;
+  color: #202820;
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.donation-progress__filter i {
+  flex: 0 0 auto;
+  color: #176637;
+  font-size: 1.5rem;
+}
+
+.donation-progress__filter span {
+  min-width: 0;
+}
+
+.donation-progress__filter:hover,
+.donation-progress__filter--active {
+  border-color: #176637;
+  background: #176637;
+  color: #ffffff;
+}
+
+.donation-progress__filter:hover i,
+.donation-progress__filter--active i {
+  color: #ffffff;
+}
+
+.donation-progress__recent {
+  margin-top: 2px;
+}
+
+.donation-progress__recent-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 38px;
+  padding: 5px 2px 8px;
+  border: 0;
+  border-bottom: 1px solid #dfe3df;
+  background: transparent;
+  color: #17291d;
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: left;
+  cursor: pointer;
+}
+
+.donation-progress__recent-toggle > .fa-clock {
+  font-size: 1.8rem;
+}
+
+.donation-progress__chevron {
+  margin-left: auto;
+  font-size: 1.3rem;
+}
+
+.donation-progress__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.donation-progress__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 4px;
+  border-bottom: 1px solid #e1e4e1;
+}
+
+.donation-progress__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #e1f1e4;
+  color: #197342;
+  font-size: 1.6rem;
+}
+
+.donation-progress__avatar--company {
+  background: #dceef8;
+  color: #1975a6;
+}
+
+.donation-progress__details {
+  flex: 1;
+  min-width: 0;
+}
+
+.donation-progress__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1px 6px;
+}
+
+.donation-progress__summary > strong:first-child {
+  color: #141a16;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.donation-progress__time {
+  color: #6b706c;
+  font-size: 1rem;
+}
+
+.donation-progress__donor-amount {
+  margin-left: auto;
+  color: #165c31;
+  font-size: 1.25rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.donation-progress__message {
+  margin: 1px 0 0;
+  color: #252a26;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.donation-progress__all-link {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-
-  min-height: 43px;
-  margin-top: 17px;
-  padding: 10px 14px;
-  border-radius: 7px;
-
-  background: #ce3756;
-  color: #ffffff;
-  font-size: 1.4rem;
-  font-weight: 700;
+  min-height: 38px;
+  margin-top: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #e7f2e4;
+  color: #174b2b;
+  font-size: 1.35rem;
+  font-weight: 800;
   text-align: center;
   text-decoration: none;
 }
 
-.donation-progress__button:hover {
-  background: #af2948;
-  color: #ffffff;
+.donation-progress__all-link:hover {
+  background: #d9ebd5;
+  color: #174b2b;
+}
+
+.donation-progress__all-link i {
+  font-size: 1.3rem;
 }
 
 .donation-progress__note {
   margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid #dfe3df;
   color: #5c625d;
   font-size: 1.1rem;
   text-align: center;
@@ -300,6 +471,35 @@
 
 .donation-progress__note span {
   display: block;
+}
+
+@media (min-width: 601px) {
+  .hero {
+    overflow: visible;
+  }
+
+  .donation-progress--placeholder {
+    display: block;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .donation-progress--expanded {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 5;
+    border: 1px solid #b9d1bf;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 850px) {
+  .donation-progress--expanded {
+    right: auto;
+    width: calc(200% + 14px);
+  }
 }
 
 /* ==================================
@@ -319,52 +519,163 @@
   align-items: center;
   justify-content: center;
 
-  width: 25px;
-  height: 25px;
-  border-radius: 5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
 
   background: #e3eee5;
   color: #2b683a;
-  font-size: 1.4rem;
+  font-size: 1.9rem;
+}
+
+.journey-progress__title {
+  font-size: 1.9rem;
 }
 
 .journey-progress__distance {
   display: flex;
   align-items: baseline;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 6px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-bottom: 12px;
 }
 
 .journey-progress__distance strong {
   color: #253f2c;
-  font-size: 2.8rem;
+  font-size: clamp(2.7rem, 3.1vw, 3.4rem);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.05;
 }
 
 .journey-progress__distance span {
   color: #475448;
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 .journey-progress__city {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
-  gap: 6px;
-
-  margin: 0 0 16px;
-  color: #526754;
+  gap: 9px;
+  min-height: 54px;
+  overflow: hidden;
+  margin: 0 0 13px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  background-color: #287b38;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(33, 113, 48, 0.9) 0%,
+      rgba(33, 113, 48, 0.72) 43%,
+      rgba(33, 113, 48, 0.08) 100%
+    ),
+    url("../../assets/images/home/bg-location.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #ffffff;
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .journey-progress__city-icon {
-  flex-shrink: 0;
-  color: #328749;
-  font-size: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 1.9rem;
   line-height: 1;
+}
+
+.journey-progress__city-copy {
+  position: relative;
+}
+
+.journey-progress__city-copy strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.journey-progress__stats {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.journey-progress__stat {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.journey-progress__stat:first-child {
+  padding-right: 7px;
+  border-right: 1px solid #d5dad6;
+}
+
+.journey-progress__stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #e3eee5;
+  color: #2b683a;
+  font-size: 1.8rem;
+}
+
+.journey-progress__stat-content {
+  min-width: 0;
+}
+
+.journey-progress__stat-label {
+  display: block;
+  margin-bottom: 2px;
+  color: #222b22;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.journey-progress__stat-value {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 4px;
+  line-height: 1.1;
+}
+
+.journey-progress__stat-value strong {
+  color: #18743a;
+  font-size: 1.5rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.journey-progress__stat-value span {
+  color: #59645b;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.journey-progress__percent {
+  min-width: 5rem;
+  color: #18743a;
+  font-size: 1.6rem;
 }
 
 /* ==================================
@@ -427,6 +738,25 @@
 
   .hero__title {
     font-size: clamp(5rem, 8vw, 7rem);
+  }
+
+  .journey-progress__stat {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 5px;
+  }
+
+  .journey-progress__stat:first-child {
+    padding-right: 5px;
+  }
+
+  .journey-progress__stat-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.5rem;
+  }
+
+  .journey-progress__stat-value strong {
+    font-size: 1.3rem;
   }
 }
 

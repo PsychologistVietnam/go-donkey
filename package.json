@@ -7,11 +7,13 @@
   "engines": {
     "node": ">=24 <25"
   },
-  "scripts": {
-    "dev": "nodemon --exec \"node --env-file=.env\" server/server.js",
-    "build": "npm run build --prefix client",
-    "postinstall": "npm install --prefix client && npm run build --prefix client",
-    "start": "node server/server.js"
+"scripts": {
+  "dev": "concurrently -k -n SERVER,CLIENT \"npm run dev:server\" \"npm run dev:client\"",
+  "dev:server": "nodemon --exec \"node --env-file=.env\" server/server.js",
+  "dev:client": "npm run dev --prefix client",
+  "build": "npm run build --prefix client",
+  "postinstall": "npm install --prefix client && npm run build --prefix client",
+  "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,8 @@
     "mysql2": "^3.24.6"
   },
   "devDependencies": {
+    "concurrently": "^10.0.7",
     "nodemon": "^3.1.11"
   }
 }
+
