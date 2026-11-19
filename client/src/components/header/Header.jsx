@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import siteLogo from "../../assets/images/home/sitelogo.png";
 import flagEn from "flag-icons/flags/4x3/gb.svg";
 import flagVi from "flag-icons/flags/4x3/vn.svg";
 import flagNl from "flag-icons/flags/4x3/nl.svg";
@@ -120,8 +121,10 @@ function Header() {
           onClick={() => setMenuOpen(false)}
           aria-label="GoDonkey Home"
         >
-          <i
-            className="fa-solid fa-mountain-sun header__logo-icon"
+          <img
+            className="header__logo-icon"
+            src={siteLogo}
+            alt=""
             aria-hidden="true"
           />
           <span>

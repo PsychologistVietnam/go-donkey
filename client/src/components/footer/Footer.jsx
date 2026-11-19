@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { getLanguageFromPath, getLocalizedPath } from "../../routing/paths";
+import footerLogo from "../../assets/images/home/logo-footer.png";
 import "./Footer.css";
 
 const footerLinks = [
@@ -44,6 +45,15 @@ function Footer() {
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} GoDonkey.org</span>
           <span>Walk for Hope</span>
+        </div>
+
+        <div className="footer__logo-art">
+          <Link
+            className="footer__logo-home"
+            to={getLocalizedPath("home", language)}
+          >
+            <img src={footerLogo} alt="GoDonkey" />
+          </Link>
         </div>
       </div>
     </footer>

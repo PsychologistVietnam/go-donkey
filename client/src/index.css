@@ -1,4 +1,5 @@
 :root {
+  --page-gutter: 3rem;
   --text: #6b6375;
   --text-h: #08060d;
   --bg: #fff;
@@ -24,6 +25,24 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 1200px) {
+  :root {
+    --page-gutter: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --page-gutter: 1.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  :root {
+    --page-gutter: 1.2rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

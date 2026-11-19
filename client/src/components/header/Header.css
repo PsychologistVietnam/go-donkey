@@ -23,7 +23,7 @@
   max-width: none;
   height: 100%;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0 var(--page-gutter);
 
   display: flex;
   align-items: center;
@@ -53,9 +53,9 @@
 .header__logo-icon {
   display: block;
   width: 44px;
-  font-size: 3.8rem;
-  line-height: 1;
-  text-align: center;
+  height: 44px;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .header__domain {
@@ -266,7 +266,7 @@
 
 @media (max-width: 1200px) {
   .header__container {
-    padding: 0;
+    padding: 0 var(--page-gutter);
     gap: 16px;
   }
 
@@ -293,7 +293,7 @@
   }
 
   .header__container {
-    padding: 0;
+    padding: 0 var(--page-gutter);
   }
 
   .header__nav {
@@ -352,7 +352,7 @@
 
 @media (max-width: 480px) {
   .header__container {
-    padding: 0 20px;
+    padding: 0 var(--page-gutter);
     gap: 8px;
   }
 
@@ -363,7 +363,7 @@
 
   .header__logo-icon {
     width: 32px;
-    font-size: 2.8rem;
+    height: 32px;
   }
 
   .header__actions {

@@ -1,4 +1,3 @@
-
 {
   "name": "go-donkey",
   "version": "1.0.0",
@@ -9,7 +8,7 @@
     "node": ">=24 <25"
   },
   "scripts": {
-    "dev": "nodemon server/server.js",
+    "dev": "nodemon --exec \"node --env-file=.env\" server/server.js",
     "build": "npm run build --prefix client",
     "postinstall": "npm install --prefix client && npm run build --prefix client",
     "start": "node server/server.js"
@@ -19,7 +18,8 @@
     "url": "git+https://github.com/PsychologistVietnam/go-donkey.git"
   },
   "dependencies": {
-    "express": "^5.3.0"
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"

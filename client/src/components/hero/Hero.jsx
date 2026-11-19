@@ -1,4 +1,6 @@
 
+import heroImage from "../../assets/images/home/hero.png";
+import heroPhoneImage from "../../assets/images/home/hero-phone.png";
 import "./Hero.css";
 import DonationProgress from "./DonationProgress";
 import JourneyProgress from "./JourneyProgress";
@@ -35,7 +37,14 @@ const journey = {
 
 export default function Hero() {
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section
+      className="hero"
+      aria-labelledby="hero-title"
+      style={{
+        "--hero-image": `url("${heroImage}")`,
+        "--hero-phone-image": `url("${heroPhoneImage}")`,
+      }}
+    >
       <div className="hero__container">
         <div className="hero__content">
           <span className="hero__label">GoDonkey.org</span>

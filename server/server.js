@@ -2,6 +2,7 @@
 import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import db from "./config.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -67,3 +68,12 @@ app.get("/{*path}", (req, res, next) => {
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Go Donkey running at http://localhost:${PORT}`);
 });
+
+db.getConnection()
+  .then((connection) => {
+    connection.release();
+    console.log("MySQL connected successfully.");
+  })
+  .catch((error) => {
+    console.error("MySQL connection failed:", error);
+  });
