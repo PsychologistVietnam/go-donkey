@@ -1,17 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-import {
-  MapContainer,
-  TileLayer,
-  Circle,
-  CircleMarker,
-  Tooltip,
-  Popup,
-} from "react-leaflet";
-
-import "leaflet/dist/leaflet.css";
+import JourneyMap from "../map/JourneyMap";
 import "./JourneyUpdates.css";
 
 // ====================================
@@ -89,111 +79,6 @@ const videos = [
     image: "/images/video-4.jpg",
   },
 ];
-
-// ====================================
-// MAP COMPONENT
-// ====================================
-
-function JourneyMap({ location }) {
-  const activity = activities[location.status];
-
-  return (
-
-<MapContainer
-  center={location.position}
-  zoom={17}
-  maxZoom={20}
-  scrollWheelZoom={true}
-  className="updates__leaflet"
->
-
-      <TileLayer
-        attribution='&copy; <a href="https://www.maptiler.com/copyright/">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
-        url={`https://api.maptiler.com/maps/streets-v4/256/{z}/{x}/{y}.png?key=${import.meta.env.VITE_MAPTILER_KEY}`}
-      />
-
-      {/* Approximate demo location */}
-      <Circle
-        center={location.position}
-        radius={300}
-        pathOptions={{
-          color: "#317d43",
-          weight: 1.5,
-          fillColor: "#459d59",
-          fillOpacity: 0.15,
-        }}
-      />
-
-      {/* Current location */}
-      <CircleMarker
-        center={location.position}
-        radius={9}
-        pathOptions={{
-          color: "#ffffff",
-          weight: 3,
-          fillColor:
-            location.status === "walking"
-              ? "#2f8748"
-              : "#d59a35",
-          fillOpacity: 1,
-        }}
-      >
-        <Tooltip
-          permanent
-          direction="top"
-          offset={[0, -12]}
-          className="updates__tooltip"
-        >
-          <span className="updates__tooltip-content">
-            <i
-              className={`fa-solid ${activity.icon}`}
-              aria-hidden="true"
-            />
-            {location.city}
-          </span>
-        </Tooltip>
-
-        <Popup>
-          <div className="updates__popup">
-            <span className="updates__popup-label">
-              DEMO LOCATION
-            </span>
-
-            <h3 className="updates__popup-title">
-              {location.city}, {location.country}
-            </h3>
-
-            <span
-              className={`updates__activity updates__activity--${location.status}`}
-            >
-              <i
-                className={`fa-solid ${activity.icon}`}
-                aria-hidden="true"
-              />
-              {activity.label}
-            </span>
-
-            <p className="updates__popup-description">
-              {activity.description}
-            </p>
-
-            <div className="updates__popup-time">
-              <i
-                className="fa-regular fa-clock"
-                aria-hidden="true"
-              />
-              {location.updatedAt
-                ? `Updated ${new Date(
-                    location.updatedAt
-                  ).toLocaleString("en-GB")}`
-                : "Sample data — not live GPS"}
-            </div>
-          </div>
-        </Popup>
-      </CircleMarker>
-    </MapContainer>
-  );
-}
 
 // ====================================
 // IMAGE WITH FALLBACK
@@ -274,7 +159,11 @@ export default function JourneyUpdates() {
             </div>
 
             <div className="updates__map">
-              <JourneyMap location={location} />
+              <JourneyMap
+                location={location}
+                activity={activity}
+                height="100%"
+              />
 
               <span className="updates__demo">
                 DEMO

@@ -104,7 +104,7 @@ function Footer() {
             <img className="footer__hope-logo" src={hopeLogo} alt="HOPE" />
             <p>
               <strong>Suicide Prevention Hotline</strong>
-              <span>hopevietnam.org.vn</span>
+              <a href="https://hopevietnam.org">hopevietnam.org</a>
             </p>
           </div>
 

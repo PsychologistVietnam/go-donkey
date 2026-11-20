@@ -3,6 +3,11 @@ import express from "express";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import db from "./config.js";
+import authRouter from "./routes/auth.routes.js";
+import { error } from "node:console";
+import e from "express";
+
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,7 +20,35 @@ const clientDist = path.resolve(
   "../client/dist"
 );
 
+
+app.use((req, res, next)=> {
+    const requestPath = req.path;
+
+    res.on("finish",()=> {
+      const message = `[HTTP] ${req.method} ${requestPath} → ${res.statusCode}`;
+
+      if (res.statusCode >= 500) {
+        console.error(message);
+      }else if (res.statusCode >= 400) {
+        console.warn(message);
+      } else {
+        console.log(message);
+        
+      }
+    })
+    next() ;
+}) ;
+
+
+
+
+
+
 app.use(express.json());
+
+
+
+app.use("/auth", authRouter) ;
 
 // Kiểm tra server
 app.get("/api/health", (req, res) => {
@@ -24,43 +57,30 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// Cho Express phục vụ React đã build
-app.use(express.static(clientDist));
 
-// React routes
-app.use((req, res, next) => {
-  if (req.method !== "GET" || req.path.startsWith("/api/")) {
-    return next();
-  }
 
-  res.sendFile(
-    path.join(clientDist, "index.html"),
-    (err) => {
-      if (err) next(err);
-    }
-  );
+
+
+// API 404
+app.use(["/auth", "/tracking", "/journey"], (req, res) => {
+  res.status(404).json({
+    success: false,
+    message: "API not found"
+  });
 });
 
-
-
-// Serve React static files
+// React static files
 app.use(express.static(clientDist));
 
 // React fallback
 app.get("/{*path}", (req, res, next) => {
-  if (req.path.startsWith("/api/")) {
-    return res.status(404).json({
-      error: "API not found"
-    });
-  }
-
-  res.sendFile(
-    path.join(clientDist, "index.html"),
-    (err) => {
-      if (err) next(err);
-    }
-  );
+  res.sendFile(path.join(clientDist, "index.html"), (err) => {
+    if (err) next(err);
+  });
 });
+
+
+
 
 
 

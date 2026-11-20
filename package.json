@@ -7,20 +7,23 @@
   "engines": {
     "node": ">=24 <25"
   },
-"scripts": {
-  "dev": "concurrently -k -n SERVER,CLIENT \"npm run dev:server\" \"npm run dev:client\"",
-  "dev:server": "nodemon --exec \"node --env-file=.env\" server/server.js",
-  "dev:client": "npm run dev --prefix client",
-  "build": "npm run build --prefix client",
-  "postinstall": "npm install --prefix client && npm run build --prefix client",
-  "start": "node server/server.js"
+  "scripts": {
+    "dev": "concurrently -k -n SERVER,CLIENT \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "nodemon --exec \"node --env-file=.env\" server/server.js",
+    "dev:client": "npm run dev --prefix client",
+    "build": "npm run build --prefix client",
+    "postinstall": "npm install --prefix client && npm run build --prefix client",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PsychologistVietnam/go-donkey.git"
   },
   "dependencies": {
+    "argon2": "^0.45.2",
     "express": "^5.3.0",
+    "express-rate-limit": "^8.7.5",
+    "jose": "^6.2.18",
     "mysql2": "^3.24.6"
   },
   "devDependencies": {
@@ -28,4 +31,3 @@
     "nodemon": "^3.1.11"
   }
 }
-

@@ -774,7 +774,7 @@
   }
 
   .hero__container {
-    padding: 150px var(--page-gutter) 24px;
+    padding: 32px var(--page-gutter) 24px;
     gap: 28px;
   }
 
