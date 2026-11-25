@@ -24,3 +24,16 @@ export async function createAccessToken(userID) {
 
    return token ;
 }
+
+
+export async function verifyAccessToken(token) {
+    const result = await jwtVerify(token, secret , {
+        algorithms:["HS256"] ,
+        issuer:"go-donkey-api" ,
+        audience:"go-donkey-clients",
+        requiredClaims:["sub" , "iat" , "exp"] ,
+        maxTokenAge: "12h"
+    })
+
+    return result.payload;
+}

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -5,13 +6,33 @@ import {
   CircleMarker,
   Tooltip,
   Popup,
+  useMap,
 } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
 import "./JourneyMap.css";
 import { mapTiles } from "./mapTiles";
 
-function JourneyMap({ location, activity, height = "30rem", className = "" }) {
+function ResizeMapOnOpen({ isVisible }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!isVisible) return undefined;
+
+    const frame = requestAnimationFrame(() => map.invalidateSize());
+    return () => cancelAnimationFrame(frame);
+  }, [isVisible, map]);
+
+  return null;
+}
+
+function JourneyMap({
+  location,
+  activity,
+  height = "30rem",
+  className = "",
+  isVisible = true,
+}) {
   return (
     <div className={`journey-map ${className}`.trim()} style={{ height }}>
       <MapContainer
@@ -21,6 +42,7 @@ function JourneyMap({ location, activity, height = "30rem", className = "" }) {
         scrollWheelZoom
         className="journey-map__leaflet"
       >
+        <ResizeMapOnOpen isVisible={isVisible} />
         <TileLayer
           attribution={mapTiles.attribution}
           url={mapTiles.url}

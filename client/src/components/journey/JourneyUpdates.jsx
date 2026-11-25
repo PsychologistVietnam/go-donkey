@@ -112,6 +112,7 @@ function Thumbnail({ src, alt, icon }) {
 
 export default function JourneyUpdates() {
   const [location, setLocation] = useState(initialLocation);
+  const [mapOpen, setMapOpen] = useState(false);
 
   const activity = activities[location.status];
 
@@ -158,11 +159,29 @@ export default function JourneyUpdates() {
               </p>
             </div>
 
-            <div className="updates__map">
+            <button
+              type="button"
+              className="updates__map-toggle"
+              aria-controls="journey-preview-map"
+              aria-expanded={mapOpen}
+              onClick={() => setMapOpen((open) => !open)}
+            >
+              <span>{mapOpen ? "Hide map" : "Show map"}</span>
+              <i
+                className={`fa-solid fa-chevron-${mapOpen ? "up" : "down"}`}
+                aria-hidden="true"
+              />
+            </button>
+
+            <div
+              id="journey-preview-map"
+              className={`updates__map${mapOpen ? "" : " updates__map--collapsed"}`}
+            >
               <JourneyMap
                 location={location}
                 activity={activity}
                 height="100%"
+                isVisible={mapOpen}
               />
 
               <span className="updates__demo">

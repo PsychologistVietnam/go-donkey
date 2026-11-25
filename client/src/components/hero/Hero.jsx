@@ -39,6 +39,25 @@ const journey = {
   journeyDays: 300,
 };
 
+function HeroHighlights({ className = "" }) {
+  return (
+    <div className={`hero__highlights ${className}`.trim()}>
+      {highlights.map((item) => (
+        <div className="hero__highlight" key={item.title}>
+          <span className="hero__icon" aria-hidden="true">
+            <i className={`fa-solid ${item.icon}`} />
+          </span>
+
+          <div className="hero__highlight-text">
+            <strong>{item.title}</strong>
+            <span>{item.description}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Hero() {
   return (
     <section
@@ -65,26 +84,14 @@ export default function Hero() {
 
           <Countdown targetDate="2027-08-25" />
 
-          <div className="hero__highlights">
-            {highlights.map((item) => (
-              <div className="hero__highlight" key={item.title}>
-                <span className="hero__icon" aria-hidden="true">
-                  <i className={`fa-solid ${item.icon}`} />
-                </span>
-
-                <div className="hero__highlight-text">
-                  <strong>{item.title}</strong>
-                  <span>{item.description}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+          <HeroHighlights className="hero__highlights--desktop" />
         </div>
 
         <aside className="hero__sidebar" aria-label="Journey and donations">
           <DonationProgress {...donation} />
           <JourneyProgress {...journey} />
         </aside>
+        <HeroHighlights className="hero__highlights--mobile" />
       </div>
     </section>
   );

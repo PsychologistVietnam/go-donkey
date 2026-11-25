@@ -111,6 +111,10 @@
   margin-top: 33px;
 }
 
+.hero__highlights--mobile {
+  display: none;
+}
+
 .hero__highlight {
   display: flex;
   align-items: center;
@@ -770,7 +774,7 @@
         rgba(13, 29, 17, 0.18) 100%
       ),
       var(--hero-phone-image);
-    background-position: center 55%;
+    background-position: center top;
   }
 
   .hero__container {
@@ -802,6 +806,16 @@
     margin-top: 26px;
   }
 
+  .hero__highlights--desktop,
+  .hero__highlights--mobile .hero__highlight:first-child {
+    display: none;
+  }
+
+  .hero__highlights--mobile {
+    display: grid;
+    margin-top: 0;
+  }
+
   .hero__highlight {
     min-width: 0;
   }
@@ -826,6 +840,10 @@
   .hero__sidebar {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+
+  .hero__sidebar .journey-progress {
+    order: -1;
   }
 
   .donation-progress,

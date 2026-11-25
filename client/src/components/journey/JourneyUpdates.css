@@ -77,6 +77,10 @@
    MAP
 ==================================== */
 
+.updates__map-toggle {
+  display: none;
+}
+
 .updates__map {
   position: relative;
   height: 30rem;
@@ -435,6 +439,32 @@
 
   .updates__title {
     font-size: 2.1rem;
+  }
+
+  .updates__map-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1.2rem 1.5rem;
+    border: 0;
+    border-top: 1px solid #e8ece7;
+    background: #ffffff;
+    color: #294c33;
+    font: inherit;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .updates__map-toggle:focus-visible {
+    outline: 2px solid #347a45;
+    outline-offset: -2px;
+  }
+
+  .updates__map--collapsed {
+    display: none;
   }
 
   .updates__map {
