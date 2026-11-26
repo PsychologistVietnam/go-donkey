@@ -14,13 +14,13 @@ const footerGroups = [
       { page: "home", label: "Home", icon: "fa-house" },
       { page: "journey", label: "The Journey", icon: "fa-person-walking" },
       { page: "donkey", label: "The Donkey", icon: "fa-horse" },
-      { page: "video", label: "Video", icon: "fa-circle-play" },
+      { page: "walk-with-us", label: "Walk with us", icon: "fa-person-walking" },
     ],
   },
   {
     title: "Explore",
     links: [
-      { page: "blog", label: "Blog", icon: "fa-book-open" },
+      { page: "blog", label: "Blog & Video", icon: "fa-book-open" },
       { page: "hope", label: "Support Hope", icon: "fa-heart" },
       { page: "about", label: "About", icon: "fa-circle-info" },
       { page: "donate", label: "Donate Now", icon: "fa-hand-holding-heart" },

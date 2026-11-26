@@ -1,5 +1,5 @@
 import { verifyAccessToken } from "../utils/jwt.js";
-import { findByID } from "../models/userModel.js";
+import { findByID , findRolesByUserID} from "../models/userModel.js";
 
 export async function requireAuth(req, res, next) {
     const authorization = req.get("Authorization")
@@ -43,9 +43,10 @@ export async function requireAuth(req, res, next) {
 
     //doc tai khoan va xu ly databse voi loi token
     let user ; 
-
+    let roles ;
     try {
         user = await findByID(userID) ;
+        roles = await findRolesByUserID(userID)
     } catch (error) {
         return res.status(500).json({
             success : false ,
@@ -62,7 +63,8 @@ export async function requireAuth(req, res, next) {
     //luu thong tin tai khoan vao request de controller su dung 
     req.auth = {
         id : userID,
-        username :user.username
+        username :user.username,
+        roles : roles
     };
     //chuyen xong handler tiep theo sau khi kiem tra thanh cong
     return next() ;

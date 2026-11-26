@@ -1,13 +1,7 @@
-import PagePlaceholder from "../PagePlaceholder";
+import Blog from "../blog/Blog";
 
 function Video() {
-  return (
-    <PagePlaceholder
-      label="JOURNEY MOMENTS"
-      title="Video"
-      description="Watch memorable moments from our journey across Vietnam."
-    />
-  );
+  return <Blog />;
 }
 
 export default Video;

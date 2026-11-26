@@ -1,11 +1,10 @@
 export const SUPPORTED_LANGUAGES = ["en", "vi", "nl"];
 
 export const MENU_ITEMS = [
-  { id: "home", label: "home" },
   { id: "journey", label: "journey" },
   { id: "donkey", label: "donkey" },
-  { id: "blog", label: "blog" },
-  { id: "video", label: "video" },
+  { id: "walk-with-us", label: "walk" },
+  { id: "blog", label: "stories" },
   { id: "hope", label: "hope" },
   { id: "about", label: "about" },
 ];

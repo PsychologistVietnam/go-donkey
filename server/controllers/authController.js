@@ -13,8 +13,10 @@ export function ping(req,res) {
 
 
 export async function login(req, res, next) {
+    // yeu cau trinh duyet khong luu response vao cache
+    res.set("Cache-Control", "no-store")
     const {username, password} = req.body ?? {} ;
-    if (typeof username != "string" || username.trim()==="" || typeof password!="string" || password==="") {
+    if (typeof username != "string" || username.trim()==="" || username.length>50 || typeof password!="string" || password==="" ||password.length>128 ) {
         return res.status(400).json({
             success:false,
             message: "Username and password must be non-empty strings"
@@ -43,11 +45,24 @@ export async function login(req, res, next) {
     }
 }
 
+
+
+
 // doc thong tin bang middleware
 export function me(req , res) {
+    res.set("Cache-Control", "no-store");
     return res.status(200).json({
         success : true ,
         user : req.auth
+    })
+}
+
+
+//Kiem tra quyen 
+export function adminCheck(req, res) {
+    return res.status(200).json({
+        success : true ,
+        message : "Admin access granted"
     })
 }
 

@@ -6,7 +6,7 @@ import db from "./config.js";
 import authRouter from "./routes/auth.routes.js";
 import { error } from "node:console";
 import e from "express";
-
+import { errorHandler } from "./middleware/errorMiddleware.js";
 
 
 const app = express();
@@ -81,7 +81,7 @@ app.get("/{*path}", (req, res, next) => {
 
 
 
-
+app.use(errorHandler) ;
 
 
 app.listen(PORT, "0.0.0.0", () => {

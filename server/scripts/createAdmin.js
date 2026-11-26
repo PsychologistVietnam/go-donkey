@@ -8,17 +8,18 @@ async function main() {
     throw new Error("Run this script directly in an interactive terminal.");
   }
 
-  const [username, fullName, email] = process.argv.slice(2);
+  const [username, fullName, email, role = "admin"] = process.argv.slice(2);
   if (
     !username || username.length > 50 || username.trim() !== username ||
     !fullName?.trim() || fullName.length > 160 ||
-    !email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+    !email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    !["admin", "tracker"].includes(role)
   ) {
-    throw new Error('Usage: node --env-file=.env server/scripts/createAdmin.js USERNAME "FULL NAME" EMAIL');
+    throw new Error('Usage: node --env-file=.env server/scripts/createAdmin.js USERNAME "FULL NAME" EMAIL [admin|tracker]');
   }
 
   console.log("Target database:", process.env.DB_NAME);
-  console.log("New admin:", username, fullName, email);
+  console.log("New account:", username, fullName, email, "Role:", role);
 
   let hidden = false;
   const output = new Writable({
@@ -43,7 +44,7 @@ async function main() {
 
   let passwordHash;
   try {
-    const confirmation = await prompt.question("Type CREATE to write this admin to this database: ");
+    const confirmation = await prompt.question(`Type CREATE to write this ${role} account to this database: `);
     if (confirmation !== "CREATE") throw new Error("Cancelled; no account created.");
 
     let password = await readPassword("Password (hidden, 8-128 characters): ");
@@ -62,8 +63,8 @@ async function main() {
   const connection = await db.getConnection();
   try {
     await connection.beginTransaction();
-    const [roles] = await connection.execute("SELECT id FROM roles WHERE code = ?", ["admin"]);
-    if (roles.length !== 1) throw new Error("Expected exactly one existing admin role.");
+    const [roles] = await connection.execute("SELECT id FROM roles WHERE code = ?", [role]);
+    if (roles.length !== 1) throw new Error(`Expected exactly one existing ${role} role.`);
 
     const [existing] = await connection.execute(
       "SELECT id FROM users WHERE username = ? OR email = ? LIMIT 1",
@@ -83,7 +84,7 @@ async function main() {
       [created[0].id, roles[0].id],
     );
     await connection.commit();
-    console.log("Admin created successfully:", username);
+    console.log("Account created successfully:", username, "Role:", role);
   } catch (error) {
     await connection.rollback();
     throw error;
@@ -96,7 +97,7 @@ try {
   await main();
 } catch (error) {
   // SQL errors may contain statement values; never print them or their SQL.
-  console.error("Admin creation failed:", error.sql ? error.code : error.message);
+  console.error("Account creation failed:", error.sql ? error.code : error.message);
   process.exitCode = 1;
 } finally {
   await db.end();

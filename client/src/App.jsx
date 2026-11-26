@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import Journey from "./pages/journey/Journey";
 import NotFound from "./pages/not-found/NotFound";
 import Video from "./pages/video/Video";
+import WalkWithUs from "./pages/walk/WalkWithUs";
 import { SUPPORTED_LANGUAGES } from "./routing/paths";
 
 function LocalizedRoutes() {
@@ -29,7 +30,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="journey" element={<Journey />} />
           <Route path="donkey" element={<Donkey />} />
+          <Route path="walk-with-us" element={<WalkWithUs />} />
           <Route path="blog" element={<Blog />} />
+          <Route path="stories" element={<Blog />} />
           <Route path="video" element={<Video />} />
           <Route path="videos" element={<Video />} />
           <Route path="hope" element={<Hope />} />
@@ -40,7 +43,9 @@ function App() {
             <Route index element={<Home />} />
             <Route path="journey" element={<Journey />} />
             <Route path="donkey" element={<Donkey />} />
+            <Route path="walk-with-us" element={<WalkWithUs />} />
             <Route path="blog" element={<Blog />} />
+            <Route path="stories" element={<Blog />} />
             <Route path="video" element={<Video />} />
             <Route path="videos" element={<Video />} />
             <Route path="hope" element={<Hope />} />
