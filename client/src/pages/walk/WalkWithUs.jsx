@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import expeditionImage from "../../assets/images/home/hero.png";
 import "./WalkWithUs.css";
 
@@ -78,22 +79,45 @@ const journeyIsNot = [
 ];
 
 function WalkWithUs() {
+  const durationsRef = useRef(null);
+  const [durationsVisible, setDurationsVisible] = useState(false);
+
+  useEffect(() => {
+    const durations = durationsRef.current;
+
+    if (!durations || !window.IntersectionObserver) {
+      setDurationsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setDurationsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.15 });
+
+    observer.observe(durations);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <article className="walk-page" aria-labelledby="walk-page-title">
       <header className="walk-page__hero">
         <div className="walk-page__hero-copy">
-          <h1 id="walk-page-title">Walk With Us</h1>
-          <p className="walk-page__opening">
-            One donkey. One mission. Thousands of kilometres.
-            <br />
-            And perhaps a few days with you.
-          </p>
-          <p>
-            Our journey through Vietnam is about more than walking. It is about
-            human connections, raising awareness of mental health, supporting
-            suicide prevention and discovering the beauty of Vietnam and its
-            people.
-          </p>
+          <div className="walk-page__hero-content">
+            <h1 id="walk-page-title">Walk With Us</h1>
+            <p className="walk-page__opening">
+              <span>One donkey. One mission. Thousands of kilometres.</span>
+              <span>And perhaps a few days with you.</span>
+            </p>
+            <p className="walk-page__hero-description">
+              Our journey through Vietnam is about more than walking. It is
+              about human connections, raising awareness of mental health,
+              supporting suicide prevention and discovering the beauty of
+              Vietnam and its people.
+            </p>
+          </div>
         </div>
         <figure className="walk-page__hero-figure">
           <img
@@ -113,11 +137,15 @@ function WalkWithUs() {
             joining us for:
           </p>
         </div>
-        <ul className="walk-page__durations" aria-label="Walking durations">
+        <ul
+          ref={durationsRef}
+          className={`walk-page__durations${durationsVisible ? " is-visible" : ""}`}
+          aria-label="Walking durations"
+        >
           {walkLengths.map(({ days, description }) => (
             <li key={days}>
               <strong>{days}</strong>
-              <span>– {description}</span>
+              <span>{description}</span>
             </li>
           ))}
         </ul>

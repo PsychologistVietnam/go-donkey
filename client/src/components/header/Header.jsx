@@ -236,12 +236,11 @@ function Header() {
             aria-controls="main-navigation"
             onClick={() => setMenuOpen((open) => !open)}
           >
-            <i
-              className={`fa-solid ${
-                menuOpen ? "fa-xmark" : "fa-bars"
-              } header__toggle-icon`}
-              aria-hidden="true"
-            />
+            <span className="header__toggle-icon" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
           </button>
         </div>
       </div>

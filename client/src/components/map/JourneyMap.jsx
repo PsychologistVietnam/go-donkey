@@ -4,6 +4,7 @@ import {
   TileLayer,
   Circle,
   CircleMarker,
+  Polyline,
   Tooltip,
   Popup,
   useMap,
@@ -32,14 +33,25 @@ function JourneyMap({
   height = "30rem",
   className = "",
   isVisible = true,
+  routeStart = null,
+  routePath = null,
+  scrollWheelZoom = true,
+  showLocationPopup = true,
 }) {
+  const routePoints = routeStart
+    ? routePath ?? [routeStart.position, location.position]
+    : null;
+
   return (
     <div className={`journey-map ${className}`.trim()} style={{ height }}>
       <MapContainer
-        center={location.position}
-        zoom={17}
+        center={routePoints ? undefined : location.position}
+        zoom={routePoints ? undefined : 17}
+        bounds={routePoints ?? undefined}
+        boundsOptions={routePoints ? { padding: [12, 12] } : undefined}
+        zoomSnap={routePoints ? 0.5 : 1}
         maxZoom={20}
-        scrollWheelZoom
+        scrollWheelZoom={scrollWheelZoom}
         className="journey-map__leaflet"
       >
         <ResizeMapOnOpen isVisible={isVisible} />
@@ -48,16 +60,39 @@ function JourneyMap({
           url={mapTiles.url}
         />
 
-        <Circle
-          center={location.position}
-          radius={300}
-          pathOptions={{
-            color: "#317d43",
-            weight: 1.5,
-            fillColor: "#459d59",
-            fillOpacity: 0.15,
-          }}
-        />
+        {routePoints ? (
+          <>
+            <Polyline
+              positions={routePoints}
+              pathOptions={{ color: "#ca3658", weight: 4, dashArray: "10 8" }}
+            />
+            <CircleMarker
+              center={routeStart.position}
+              radius={8}
+              pathOptions={{
+                color: "#ffffff",
+                weight: 3,
+                fillColor: "#ca3658",
+                fillOpacity: 1,
+              }}
+            >
+              <Tooltip permanent direction="bottom" offset={[0, 10]} className="journey-map__tooltip">
+                {routeStart.city}
+              </Tooltip>
+            </CircleMarker>
+          </>
+        ) : (
+          <Circle
+            center={location.position}
+            radius={300}
+            pathOptions={{
+              color: "#317d43",
+              weight: 1.5,
+              fillColor: "#459d59",
+              fillOpacity: 0.15,
+            }}
+          />
+        )}
 
         <CircleMarker
           center={location.position}
@@ -81,7 +116,7 @@ function JourneyMap({
             </span>
           </Tooltip>
 
-          <Popup>
+          {showLocationPopup && <Popup>
             <div className="journey-map__popup">
               <span className="journey-map__popup-label">DEMO LOCATION</span>
 
@@ -107,7 +142,7 @@ function JourneyMap({
                   : "Sample data — not live GPS"}
               </div>
             </div>
-          </Popup>
+          </Popup>}
         </CircleMarker>
       </MapContainer>
     </div>
