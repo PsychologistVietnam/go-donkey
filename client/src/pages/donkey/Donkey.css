@@ -1,0 +1,508 @@
+.donkey-page {
+  --donkey-forest: #284e32;
+  --donkey-deep: #173b29;
+  --donkey-ink: #26382b;
+  --donkey-muted: #536254;
+  --donkey-paper: #f7f8f4;
+  --donkey-rule: #cbd6c9;
+  width: 100%;
+  overflow: clip;
+  background: #fff;
+  color: var(--donkey-ink);
+  font-family: "Be Vietnam Pro", "Poppins", Arial, sans-serif;
+}
+
+.donkey-page__wrap {
+  width: min(100%, 120rem);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+.donkey-page h1,
+.donkey-page h2,
+.donkey-page h3,
+.donkey-page p {
+  margin: 0;
+  font-family: inherit;
+}
+
+.donkey-page p,
+.donkey-page li {
+  font-size: 1.7rem;
+  line-height: 1.7;
+}
+
+.donkey-page p + p {
+  margin-top: 1.5rem;
+}
+
+.donkey-page h2 {
+  color: var(--donkey-forest);
+  font-size: clamp(3rem, 3.2vw, 4.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.donkey-page__hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 59rem;
+  background: var(--donkey-paper);
+}
+
+.donkey-page__hero-copy {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: clamp(5rem, 7vw, 9rem) clamp(2.4rem, 4vw, 6rem) clamp(5rem, 7vw, 9rem) var(--page-gutter);
+}
+
+.donkey-page__hero-inner {
+  max-width: 58rem;
+}
+
+.donkey-page__hero h1 {
+  color: var(--donkey-forest);
+  font-size: clamp(4.8rem, 5.2vw, 7rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+}
+
+.donkey-page .donkey-page__hero-lead {
+  margin: 2.4rem 0;
+  color: var(--donkey-forest);
+  font-size: clamp(1.9rem, 1.5vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.donkey-page__hero-inner > p:not(.donkey-page__hero-lead) {
+  color: var(--donkey-muted);
+}
+
+.donkey-page__hero-photo,
+.donkey-page__cart-photo {
+  min-width: 0;
+  margin: 0;
+}
+
+.donkey-page__hero-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 59rem;
+  object-fit: cover;
+  object-position: 43% center;
+}
+
+.donkey-page__principle {
+  padding: clamp(3rem, 4vw, 5rem) var(--page-gutter);
+  background: var(--donkey-forest);
+  color: #fff;
+  text-align: center;
+}
+
+.donkey-page__principle p {
+  color: #e5eee5;
+}
+
+.donkey-page__principle strong {
+  display: block;
+  max-width: 85rem;
+  margin: 1rem auto 0;
+  color: #f1d87b;
+  font-size: clamp(2.6rem, 3vw, 4rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.donkey-page__section,
+.donkey-page__band-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 6vw, 8rem);
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+}
+
+.donkey-page__section-heading p {
+  margin-top: 1.7rem;
+  color: var(--donkey-muted);
+}
+
+.donkey-page__welfare-photo,
+.donkey-page__gear-photo,
+.donkey-page__break-photo,
+.donkey-page__road-photo,
+.donkey-page__stay-photo,
+.donkey-page__future-photo {
+  min-width: 0;
+  margin: 0;
+}
+
+.donkey-page__welfare-photo {
+  margin-top: 3rem;
+}
+
+.donkey-page__welfare-photo img,
+.donkey-page__gear-photo img,
+.donkey-page__break-photo img,
+.donkey-page__road-photo img,
+.donkey-page__stay-photo img,
+.donkey-page__future-photo img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1.6rem;
+}
+
+.donkey-page__welfare-photo img {
+  aspect-ratio: 4 / 3;
+  object-position: 48% center;
+}
+
+.donkey-page__section-body {
+  max-width: 70rem;
+}
+
+.donkey-page__needs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 2.4rem;
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--donkey-rule);
+}
+
+.donkey-page__needs li {
+  position: relative;
+  padding: 1rem 0 1rem 1.7rem;
+  border-bottom: 1px solid var(--donkey-rule);
+}
+
+.donkey-page__needs li::before {
+  position: absolute;
+  top: 2.1rem;
+  left: 0;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #6b984d;
+  content: "";
+}
+
+.donkey-page .donkey-page__emphasis {
+  margin-top: 2rem;
+  padding-left: 1.7rem;
+  border-left: 3px solid #d6ad37;
+  color: var(--donkey-forest);
+  font-weight: 600;
+}
+
+.donkey-page__band {
+  background: var(--donkey-paper);
+}
+
+.donkey-page__band-inner > div {
+  max-width: 70rem;
+}
+
+.donkey-page__gear-photo {
+  margin-top: 3rem;
+}
+
+.donkey-page__gear-photo img {
+  aspect-ratio: 16 / 10;
+  object-position: center;
+}
+
+.donkey-page__cart {
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+}
+
+.donkey-page__cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 8rem);
+}
+
+.donkey-page__cart-layout p:first-of-type {
+  margin-top: 2rem;
+}
+
+.donkey-page__cart-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 1.6rem;
+}
+
+.donkey-page__features {
+  padding-top: clamp(4rem, 5vw, 6rem);
+}
+
+.donkey-page__features h3 {
+  color: var(--donkey-forest);
+  font-size: 2.3rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.donkey-page__features ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 2.8rem;
+  margin: 2rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.donkey-page__features li {
+  padding: 1.6rem 0;
+  border-top: 1px solid var(--donkey-rule);
+}
+
+.donkey-page__features strong,
+.donkey-page__features span {
+  display: block;
+}
+
+.donkey-page__features strong {
+  color: var(--donkey-forest);
+  font-weight: 700;
+}
+
+.donkey-page__features span {
+  margin-top: 0.4rem;
+  color: var(--donkey-muted);
+}
+
+.donkey-page__features > p {
+  max-width: 78rem;
+  font-weight: 600;
+}
+
+.donkey-page__practical {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(3rem, 6vw, 8rem);
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+  border-top: 1px solid var(--donkey-rule);
+}
+
+.donkey-page__practical h2 {
+  margin-bottom: 2rem;
+}
+
+.donkey-page__break-photo,
+.donkey-page__road-photo {
+  margin-bottom: 2rem;
+}
+
+.donkey-page__break-photo img,
+.donkey-page__road-photo img {
+  aspect-ratio: 16 / 9;
+}
+
+.donkey-page__break-photo img {
+  object-position: center 50%;
+}
+
+.donkey-page__road-photo img {
+  object-position: center 75%;
+}
+
+.donkey-page__stay {
+  background: var(--donkey-paper);
+}
+
+.donkey-page__stay-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 8rem);
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+}
+
+.donkey-page__stay-copy {
+  max-width: 76rem;
+}
+
+.donkey-page__stay-photo img {
+  aspect-ratio: 4 / 5;
+  object-position: center;
+}
+
+.donkey-page__stay h2 {
+  margin-bottom: 2rem;
+}
+
+.donkey-page__contact {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4.8rem;
+  margin-top: 2.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.7rem;
+  background: var(--donkey-forest);
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.donkey-page__contact:hover {
+  background: var(--donkey-deep);
+}
+
+.donkey-page__contact:focus-visible {
+  outline: 3px solid var(--donkey-forest);
+  outline-offset: 4px;
+}
+
+.donkey-page__future {
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+}
+
+.donkey-page__future h2 {
+  margin-bottom: 2.8rem;
+}
+
+.donkey-page__future-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: clamp(3rem, 6vw, 8rem);
+}
+
+.donkey-page__future-photo img {
+  aspect-ratio: 16 / 10;
+  object-position: center;
+}
+
+.donkey-page__promise {
+  border-top: 1px solid var(--donkey-rule);
+  background: #eaf0e6;
+  color: var(--donkey-ink);
+}
+
+.donkey-page__promise-inner {
+  max-width: 120rem;
+  padding-top: clamp(5rem, 7vw, 9rem);
+  padding-bottom: clamp(5rem, 7vw, 9rem);
+}
+
+.donkey-page__promise h2 {
+  margin-bottom: 3rem;
+  color: var(--donkey-forest);
+}
+
+.donkey-page__promise-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(3rem, 6vw, 8rem);
+}
+
+.donkey-page__promise-decisions {
+  align-self: start;
+  padding-left: 2.4rem;
+  border-left: 4px solid #d6ad37;
+  color: var(--donkey-forest);
+  font-weight: 600;
+}
+
+.donkey-page .donkey-page__promise-quote {
+  max-width: 105rem;
+  margin-top: clamp(4rem, 5vw, 7rem);
+  padding-top: clamp(3rem, 4vw, 5rem);
+  border-top: 2px solid var(--donkey-forest);
+  color: var(--donkey-forest);
+  font-size: clamp(3.1rem, 4vw, 5.3rem);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .donkey-page__hero,
+  .donkey-page__section,
+  .donkey-page__band-inner,
+  .donkey-page__cart-layout,
+  .donkey-page__practical,
+  .donkey-page__stay-inner,
+  .donkey-page__future-layout,
+  .donkey-page__promise-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .donkey-page__hero-copy {
+    justify-content: flex-start;
+    padding: 6rem var(--page-gutter);
+  }
+
+  .donkey-page__hero-photo img {
+    min-height: 0;
+    max-height: 55rem;
+    aspect-ratio: 3 / 2;
+  }
+
+  .donkey-page__features ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .donkey-page__welfare-photo img {
+    max-height: 42rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  .donkey-page__gear-photo img,
+  .donkey-page__future-photo img {
+    max-height: 42rem;
+    aspect-ratio: 16 / 9;
+  }
+
+  .donkey-page__stay-photo img {
+    max-height: 42rem;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 600px) {
+  .donkey-page p,
+  .donkey-page li {
+    font-size: 1.6rem;
+  }
+
+  .donkey-page__hero h1 {
+    font-size: clamp(4.8rem, 13vw, 6.5rem);
+  }
+
+  .donkey-page__hero-photo img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .donkey-page__needs,
+  .donkey-page__features ul {
+    grid-template-columns: 1fr;
+  }
+
+  .donkey-page__cart-photo img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .donkey-page__contact {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}

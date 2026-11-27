@@ -6,7 +6,7 @@ export const MENU_ITEMS = [
   { id: "walk-with-us", label: "walk" },
   { id: "blog", label: "stories" },
   { id: "hope", label: "hope" },
-  { id: "about", label: "about" },
+  { id: "contact-us", label: "contact" },
 ];
 
 export function getLanguageFromPath(pathname) {

@@ -22,7 +22,7 @@ const footerGroups = [
     links: [
       { page: "blog", label: "Blog & Video", icon: "fa-book-open" },
       { page: "hope", label: "Support Hope", icon: "fa-heart" },
-      { page: "about", label: "About", icon: "fa-circle-info" },
+      { page: "contact-us", label: "Contact Us", icon: "fa-circle-info" },
       { page: "donate", label: "Donate Now", icon: "fa-hand-holding-heart" },
     ],
   },

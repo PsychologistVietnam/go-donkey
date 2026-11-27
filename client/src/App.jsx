@@ -1,7 +1,7 @@
 import { BrowserRouter, Outlet, Route, Routes, useParams } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
-import About from "./pages/about/About";
 import Blog from "./pages/blog/Blog";
+import Contact from "./pages/contact/Contact";
 import Donate from "./pages/donate/Donate";
 import Donkey from "./pages/donkey/Donkey";
 import Hope from "./pages/hope/Hope";
@@ -37,7 +37,7 @@ function App() {
           <Route path="videos" element={<Video />} />
           <Route path="hope" element={<Hope />} />
           <Route path="donate" element={<Donate />} />
-          <Route path="about" element={<About />} />
+          <Route path="contact-us" element={<Contact />} />
 
           <Route path=":locale" element={<LocalizedRoutes />}>
             <Route index element={<Home />} />
@@ -50,7 +50,7 @@ function App() {
             <Route path="videos" element={<Video />} />
             <Route path="hope" element={<Hope />} />
             <Route path="donate" element={<Donate />} />
-            <Route path="about" element={<About />} />
+            <Route path="contact-us" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 
